@@ -1,10 +1,11 @@
 @import org.springframework.security.core.GrantedAuthority
+@import org.springframework.security.web.csrf.CsrfToken
 @import java.util.Collection
 
 @param String username = ""
-@param Collection<? extends GrantedAuthority> authorities = null
 @param String email = null
-@param org.springframework.security.web.csrf.CsrfToken csrf = null
+@param Collection<? extends GrantedAuthority> authorities = null
+@param CsrfToken csrf = null
 
 @template.layout.default(
 content = @`

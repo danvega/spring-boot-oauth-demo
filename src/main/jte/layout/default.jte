@@ -1,5 +1,7 @@
+@import org.springframework.security.web.csrf.CsrfToken
+
 @param gg.jte.Content content
-@param org.springframework.security.web.csrf.CsrfToken csrf = null
+@param CsrfToken csrf = null
 
 <!DOCTYPE html>
 <html lang="en">

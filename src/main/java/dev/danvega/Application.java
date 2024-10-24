@@ -1,4 +1,4 @@
-package dev.danvega.jte_login;
+package dev.danvega;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

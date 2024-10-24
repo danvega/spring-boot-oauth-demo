@@ -1,4 +1,4 @@
-package dev.danvega.jte_login;
+package dev.danvega;
 
 
 import jakarta.servlet.http.HttpServletRequest;

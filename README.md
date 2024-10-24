@@ -119,10 +119,7 @@ spring:
             scope:
               - user:email
               - read:user
-    user:
-      name: admin
-      password: admin123
-      roles: ADMIN
+
 ```
 
 ## Project Structure
@@ -132,10 +129,7 @@ src/
   main/
     java/
       com.example/
-        config/
-          JteConfig.java         # JTE configuration
           SecurityConfig.java    # Spring Security configuration
-        controller/
           LoginController.java   # Login handling
           DashboardController.java # Dashboard pages
     resources/
