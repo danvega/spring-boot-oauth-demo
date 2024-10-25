@@ -18,7 +18,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        return http
             .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/", "/login", "/error").permitAll()
                     .anyRequest().authenticated()
@@ -35,9 +35,8 @@ public class SecurityConfig {
             .logout(logout -> logout
                     .logoutSuccessUrl("/")
                     .permitAll()
-            );
-
-        return http.build();
+            )
+            .build();
     }
 
     @Bean
@@ -46,10 +45,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails defaultUser = User.builder()
                 .username("admin")
-                .password(passwordEncoder().encode("admin123"))
+                .password(passwordEncoder.encode("admin123"))
                 .roles("ADMIN")
                 .build();
 
