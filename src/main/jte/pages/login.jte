@@ -1,8 +1,8 @@
+@import dev.danvega.CsrfHiddenInput
+
 @param Boolean error = false
 @param String errorMessage = null
-@param Boolean logout = false
-@param String logoutMessage = null
-@param org.springframework.security.web.csrf.CsrfToken csrf = null
+@param CsrfHiddenInput csrfHiddenInput
 
 @template.layout.default(
 content = @`
@@ -20,17 +20,9 @@ content = @`
                 </div>
             @endif
 
-            @if(logout)
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline">${logoutMessage != null ? logoutMessage : "You have been logged out"}</span>
-                </div>
-            @endif
-
             <!-- Login Form -->
             <form class="mt-8 space-y-6" action="/login" method="POST">
-                @if(csrf != null)
-                    <input type="hidden" name="${csrf.getParameterName()}" value="${csrf.getToken()}">
-                @endif
+                ${csrfHiddenInput}
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
                         <input name="username" type="text" required
@@ -81,6 +73,4 @@ content = @`
             </div>
         </div>
     </div>
-`,
-csrf = csrf
-)
+`)

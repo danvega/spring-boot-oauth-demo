@@ -1,11 +1,11 @@
 @import org.springframework.security.core.GrantedAuthority
-@import org.springframework.security.web.csrf.CsrfToken
 @import java.util.Collection
+@import dev.danvega.CsrfHiddenInput
 
 @param String username = ""
 @param String email = null
 @param Collection<? extends GrantedAuthority> authorities = null
-@param CsrfToken csrf = null
+@param CsrfHiddenInput csrfHiddenInput
 
 @template.layout.default(
 content = @`
@@ -22,9 +22,7 @@ content = @`
                             <span class="text-gray-500 text-sm">${email}</span>
                         @endif
                         <form action="/logout" method="post">
-                            @if(csrf != null)
-                                <input type="hidden" name="${csrf.getParameterName()}" value="${csrf.getToken()}">
-                            @endif
+                            ${csrfHiddenInput}
                             <button type="submit"
                                     class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
                                 Logout
@@ -66,6 +64,4 @@ content = @`
             </div>
         </main>
     </div>
-`,
-csrf = csrf
-)
+`)

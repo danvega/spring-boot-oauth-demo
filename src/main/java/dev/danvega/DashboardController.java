@@ -15,17 +15,13 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String dashboard(Authentication authentication, HttpServletRequest request, Model model) {
 
-        if (authentication != null && authentication.isAuthenticated()) {
-            Object principal = authentication.getPrincipal();
-
-            if (principal instanceof UserDetails userDetails) {
-                model.addAttribute("username", userDetails.getUsername());
-                model.addAttribute("authorities", userDetails.getAuthorities());
-            } else if (principal instanceof OAuth2User oauth2User) {
-                model.addAttribute("username", oauth2User.getAttribute("name"));
-                model.addAttribute("email", oauth2User.getAttribute("email"));
-                model.addAttribute("authorities", oauth2User.getAuthorities());
-            }
+        if (authentication.getPrincipal() instanceof UserDetails userDetails) {
+            model.addAttribute("username", userDetails.getUsername());
+            model.addAttribute("authorities", userDetails.getAuthorities());
+        } else if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
+            model.addAttribute("username", oauth2User.getAttribute("name"));
+            model.addAttribute("email", oauth2User.getAttribute("email"));
+            model.addAttribute("authorities", oauth2User.getAuthorities());
         }
 
         // Add CSRF token
